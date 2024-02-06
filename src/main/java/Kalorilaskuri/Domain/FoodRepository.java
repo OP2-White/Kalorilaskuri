@@ -1,11 +1,13 @@
 package Kalorilaskuri.Domain;
 
-import Food;
-import java.util.List;
+import Kalorilaskuri.Domain.Food;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
+@EnableJpaRepositories
 public interface FoodRepository extends JpaRepository <Food, Long> {
-    List<Food> findByFoodId(Long FoodId);
+    Optional<Food> findById(Long FoodId);
 
 }

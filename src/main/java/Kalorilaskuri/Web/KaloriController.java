@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import Kalorilaskuri.Domain.FoodRepository;
-import Kalorilaskuri.Domain.Food;
+//import Kalorilaskuri.Domain.Food;
 
 @Controller
 public class KaloriController {
