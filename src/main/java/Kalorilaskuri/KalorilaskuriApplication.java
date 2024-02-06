@@ -8,6 +8,7 @@ public class KalorilaskuriApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(KalorilaskuriApplication.class, args);
+		
 	}
 
 }
