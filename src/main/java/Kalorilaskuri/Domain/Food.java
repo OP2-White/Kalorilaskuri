@@ -1,5 +1,6 @@
 package Kalorilaskuri.Domain;
 
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,7 +17,8 @@ public class Food {
     private int Carbs;
     private int Fat;
 
-
+public Food () {
+}
     public Food (String FoodName, int Calories, int Protein, int Carbs, int Fat) {
         super();
         this.FoodName = FoodName;
