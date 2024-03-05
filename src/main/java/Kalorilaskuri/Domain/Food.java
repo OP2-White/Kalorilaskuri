@@ -10,86 +10,58 @@ import jakarta.persistence.Id;
 public class Food {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long FoodId;
-    private String FoodName;
-    private int Calories;
-    private int Protein;
-    private int Carbs;
-    private int Fat;
+    private Long foodId;
+    private String foodName;
+    private int calories;
+    private int protein;
+    private int carbs;
+    private int fat;
 
 public Food () {
 }
-    public Food (String FoodName, int Calories, int Protein, int Carbs, int Fat) {
+    public Food (String foodName, int calories, int protein, int carbs, int fat) {
         super();
-        this.FoodName = FoodName;
-        this.Calories = Calories;
-        this.Protein = Protein;
-        this.Carbs = Carbs;
-        this.Fat = Fat;
+        this.foodName = foodName;
+        this.calories = calories;
+        this.protein = protein;
+        this.carbs = carbs;
+        this.fat = fat;
     }
-
-
     public Long getFoodId() {
-        return FoodId;
+        return foodId;
     }
-
-
     public void setFoodId(Long foodId) {
-        FoodId = foodId;
+        this.foodId = foodId;
     }
-
-
     public String getFoodName() {
-        return FoodName;
+        return foodName;
     }
-
-
     public void setFoodName(String foodName) {
-        FoodName = foodName;
+        this.foodName = foodName;
     }
-
-
     public int getCalories() {
-        return Calories;
+        return calories;
     }
-
-
     public void setCalories(int calories) {
-        Calories = calories;
+        this.calories = calories;
     }
-
-
     public int getProtein() {
-        return Protein;
+        return protein;
     }
-
-
     public void setProtein(int protein) {
-        Protein = protein;
+        this.protein = protein;
     }
-
-
     public int getCarbs() {
-        return Carbs;
+        return carbs;
     }
-
-
     public void setCarbs(int carbs) {
-        Carbs = carbs;
+        this.carbs = carbs;
     }
-
-
     public int getFat() {
-        return Fat;
+        return fat;
     }
-
-
     public void setFat(int fat) {
-        Fat = fat;
+        this.fat = fat;
     }
-    
-
-
-
     
 }
