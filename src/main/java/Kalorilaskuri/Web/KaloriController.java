@@ -1,6 +1,8 @@
 package Kalorilaskuri.Web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,9 +41,22 @@ public class KaloriController {
     }
 
     @CrossOrigin
-    @RequestMapping(value="saveFoodREST", method = RequestMethod.POST)
-    public @ResponseBody Food saveFoodRest(@RequestBody Food food) {
-        return foodRepository.save(food);
+    @RequestMapping(value = "/saveFoodREST", method = RequestMethod.POST)
+    public ResponseEntity<String> saveFoodRest(@RequestBody Food food) {
+        try {
+            // Save the food data to the database
+            foodRepository.save(food);
+            
+            // Return success response
+            return ResponseEntity.ok("Data saved successfully");
+        } catch (Exception e) {
+            // Log the exception for debugging purposes
+            e.printStackTrace();
+
+            // Return an error response with the exact error message
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error saving data: " + e.getMessage());
+        }
     }
 
 
