@@ -22,7 +22,7 @@ public class KaloriController {
     private FoodRepository foodRepository;
 
     @CrossOrigin
-    @RequestMapping(value = "/foodListREST", method = RequestMethod.GET)
+    @RequestMapping(value = "/foodListRest", method = RequestMethod.GET)
     public @ResponseBody List <Food> foodListRest() {
         return(List<Food>) foodRepository.findAll();
     }
@@ -37,7 +37,6 @@ public class KaloriController {
     @RequestMapping(value="saveFoodREST", method = RequestMethod.POST)
     public @ResponseBody Food saveFoodRest(@RequestBody Food food) {
         return foodRepository.save(food);
-    
     }
 
 
