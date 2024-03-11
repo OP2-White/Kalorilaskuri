@@ -35,19 +35,19 @@ public class KaloriController {
         return "foodListRest"; 
     }
 
-    @CrossOrigin
+    @CrossOrigin(origins = "http://localhost:5173")
     @RequestMapping(value = "/foodListRest", method = RequestMethod.GET)
     public @ResponseBody List <Food> foodListRest() {
         return(List<Food>) foodRepository.findAll();
     }
 
-    @CrossOrigin
+    @CrossOrigin(origins = "http://localhost:5173")
     @RequestMapping(value="foodREST/{id}", method = RequestMethod.GET)
     public @ResponseBody Optional<Food> foodByIdRest(@PathVariable Long id) {
         return foodRepository.findById(id);
     }
 
-    @CrossOrigin
+    @CrossOrigin(origins = "http://localhost:5173")
     @RequestMapping(value = "/saveFoodREST", method = RequestMethod.POST)
     public ResponseEntity<String> saveFoodRest(@RequestBody Food food) {
         try {
@@ -66,7 +66,7 @@ public class KaloriController {
         }
     }
 
-    @CrossOrigin
+    @CrossOrigin(origins = "http://localhost:5173")
     @RequestMapping(value="saveFoodEatenREST", method = RequestMethod.POST)
     public @ResponseBody FoodEaten saveFoodEatenRest(@RequestBody FoodEaten foodEaten) {
         return foodEatenRepository.save(foodEaten);
