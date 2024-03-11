@@ -13,7 +13,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import Kalorilaskuri.Domain.FoodRepository;
+import Kalorilaskuri.Domain.FoodEatenRepository;
 import Kalorilaskuri.Domain.Food;
+import Kalorilaskuri.Domain.FoodEaten;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +25,10 @@ public class KaloriController {
     
     @Autowired
     private FoodRepository foodRepository;
+   
+    @Autowired
+    private FoodEatenRepository foodEatenRepository;
+
 
     @GetMapping("/")
     public String home() {
@@ -57,6 +64,12 @@ public class KaloriController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Error saving data: " + e.getMessage());
         }
+    }
+
+    @CrossOrigin
+    @RequestMapping(value="saveFoodEatenREST", method = RequestMethod.POST)
+    public @ResponseBody FoodEaten saveFoodEatenRest(@RequestBody FoodEaten foodEaten) {
+        return foodEatenRepository.save(foodEaten);
     }
 
 

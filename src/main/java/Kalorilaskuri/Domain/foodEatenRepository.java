@@ -3,8 +3,7 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface foodEatenRepository extends JpaRepository <Food, Long> {
-    Optional<Food> findById(Long id);
-   
-
+public interface FoodEatenRepository extends JpaRepository<FoodEaten, Long> {
+    Optional<FoodEaten> findById(Long id);
+    FoodEaten save(FoodEaten foodEaten);
 }
