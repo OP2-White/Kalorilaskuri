@@ -43,8 +43,8 @@ public class KaloriController {
     }
 
     @CrossOrigin
-    @RequestMapping(value="foodREST/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Optional<Food>>  foodByIdRest(@PathVariable("id") Long id) {
+    @RequestMapping(value="foodREST/{foodId}", method = RequestMethod.GET)
+    public ResponseEntity<Optional<Food>>  foodByIdRest(@PathVariable("foodId") Long id) {
         Optional<Food> food = foodRepository.findById(id);
         return ResponseEntity.ok().body(food);
     }
