@@ -44,13 +44,13 @@ public class KaloriController {
 
     @CrossOrigin
     @RequestMapping(value="foodREST/{id}", method = RequestMethod.GET)
-    public @ResponseBody Optional<Food> foodByIdRest(@PathVariable Long id) {
+    public @ResponseBody Optional<Food> foodByIdRest(@PathVariable("id") Long id) {
         return foodRepository.findById(id);
     }
 
     @CrossOrigin
     @RequestMapping(value="foodREST/{foodName}", method = RequestMethod.GET)
-    public @ResponseBody Optional<Food> foodByNameRest(@PathVariable String foodName) {
+    public @ResponseBody Optional<Food> foodByNameRest(@PathVariable("foodName") String foodName) {
         return foodRepository.findByFoodName(foodName);
     }
 
