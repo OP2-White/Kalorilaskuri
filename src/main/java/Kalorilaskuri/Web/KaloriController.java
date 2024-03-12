@@ -49,6 +49,12 @@ public class KaloriController {
     }
 
     @CrossOrigin
+    @RequestMapping(value="foodREST/{foodName}", method = RequestMethod.GET)
+    public @ResponseBody Optional<Food> foodByNameRest(@PathVariable String foodName) {
+        return foodRepository.findByFoodName(foodName);
+    }
+
+    @CrossOrigin
     @RequestMapping(value = "/saveFoodREST", method = RequestMethod.POST)
     public ResponseEntity<String> saveFoodRest(@RequestBody Food food) {
         try {
