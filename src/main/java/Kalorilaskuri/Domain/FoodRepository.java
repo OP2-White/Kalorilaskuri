@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @EnableJpaRepositories
 public interface FoodRepository extends JpaRepository <Food, Long> {
-    Optional<Food> findById(Long id);
+    Optional<Food> findByFoodId(Long foodId);
     Optional<Food> findByFoodName(String foodName);
    
 
