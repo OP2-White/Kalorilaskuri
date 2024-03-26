@@ -16,19 +16,28 @@ public class FoodEaten {
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
    private String date;
-
-   @OneToMany(cascade = CascadeType.ALL)
-   @JoinColumn(name = "food_eaten_id", referencedColumnName = "id")
-   private List<Food> foods;
+   private String foodName;
+   private int calories;
+   private int protein;
+   private int carbs;
+   private int fat;
 
    public FoodEaten() {
 
    }
 
-   public FoodEaten(String date, List<Food> foods) {
+   
+
+public FoodEaten(String date, String foodName, int calories, int protein, int carbs, int fat) {
     this.date = date;
-    this.foods = foods;
-   }
+    this.foodName = foodName;
+    this.calories = calories;
+    this.protein = protein;
+    this.carbs = carbs;
+    this.fat = fat;
+}
+
+
 
 public Long getId() {
     return id;
@@ -46,13 +55,55 @@ public void setDate(String date) {
     this.date = date;
 }
 
-public List<Food> getFoods() {
-    return foods;
+public String getFoodName() {
+    return foodName;
 }
 
-public void setFoods(List<Food> foods) {
-    this.foods = foods;
+public void setFoodName(String foodName) {
+    this.foodName = foodName;
 }
+
+public int getCalories() {
+    return calories;
+}
+
+public void setCalories(int calories) {
+    this.calories = calories;
+}
+
+public int getProtein() {
+    return protein;
+}
+
+public void setProtein(int protein) {
+    this.protein = protein;
+}
+
+public int getCarbs() {
+    return carbs;
+}
+
+public void setCarbs(int carbs) {
+    this.carbs = carbs;
+}
+
+public int getFat() {
+    return fat;
+}
+
+public void setFat(int fat) {
+    this.fat = fat;
+}
+
+
+
+@Override
+public String toString() {
+    return "FoodEaten [id=" + id + ", date=" + date + ", foodName=" + foodName + ", calories=" + calories + ", protein="
+            + protein + ", carbs=" + carbs + ", fat=" + fat + "]";
+}
+
+
 
    
 
