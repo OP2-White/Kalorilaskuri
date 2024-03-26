@@ -16,6 +16,7 @@ public class Food {
     private int protein;
     private int carbs;
     private int fat;
+    private int sugar;
 
 public Food () {
 }
@@ -63,5 +64,13 @@ public Food () {
     public void setFat(int fat) {
         this.fat = fat;
     }
+    public int getSugar() {
+        return sugar;
+    }
+    public void setSugar(int sugar) {
+        this.sugar = sugar;
+    }
+
+    
     
 }

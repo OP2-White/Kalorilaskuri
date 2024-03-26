@@ -80,6 +80,12 @@ public class KaloriController {
         return foodEatenRepository.save(foodEaten);
     }
 
+    @CrossOrigin
+    @RequestMapping(value = "/eatenFoodListREST", method = RequestMethod.GET)
+    public @ResponseBody List <FoodEaten> foodListEatenFoodsRest() {
+        return(List<FoodEaten>) foodEatenRepository.findAll();
+    }
+
 
     }
 

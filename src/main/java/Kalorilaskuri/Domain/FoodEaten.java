@@ -21,6 +21,7 @@ public class FoodEaten {
    private int protein;
    private int carbs;
    private int fat;
+   private int sugar;
 
    public FoodEaten() {
 
@@ -97,12 +98,23 @@ public void setFat(int fat) {
 
 
 
+
+public int getSugar() {
+    return sugar;
+}
+
+
+
+public void setSugar(int sugar) {
+    this.sugar = sugar;
+}
+
+
 @Override
 public String toString() {
     return "FoodEaten [id=" + id + ", date=" + date + ", foodName=" + foodName + ", calories=" + calories + ", protein="
             + protein + ", carbs=" + carbs + ", fat=" + fat + "]";
 }
-
 
 
    
