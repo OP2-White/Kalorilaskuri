@@ -9,6 +9,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 public interface FoodRepository extends JpaRepository <Food, Long> {
     Optional<Food> findByFoodId(Long foodId);
     Optional<Food> findByFoodName(String foodName);
-   
 
+    void deleteById(Long foodId);   
 }
