@@ -6,15 +6,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import Kalorilaskuri.Domain.FoodRepository;
+import Kalorilaskuri.Domain.UserRepository;
 import Kalorilaskuri.Domain.FoodEatenRepository;
 import Kalorilaskuri.Domain.Food;
 import Kalorilaskuri.Domain.FoodEaten;
+import Kalorilaskuri.Domain.User;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,6 +31,8 @@ public class KaloriController {
     @Autowired
     private FoodEatenRepository foodEatenRepository;
 
+    @Autowired
+    private UserRepository userRepository;
 @CrossOrigin
 @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home() {
@@ -114,6 +119,52 @@ public class KaloriController {
             // Palauta virheellinen vastaus tarkalla virhesanomalla
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Error deleting food: " + e.getMessage());
+        }
+    }
+
+    @CrossOrigin
+    @RequestMapping(value="/users", method = RequestMethod.POST)
+   public User AddUsersRest(@RequestBody User user){
+       User newUser = new User(user.getUsername(), user.getPasswordHash());
+
+       userRepository.save(newUser);
+       return newUser;
+   }
+
+   // GET REST endpoint for calling users by id as json.
+	@CrossOrigin
+    @RequestMapping(value="/users/{id}", method = RequestMethod.GET)
+   public ResponseEntity<Optional<User>> findusersRest(@PathVariable("id")Long userId){
+       Optional<User> user = userRepository.findById(userId);
+       return ResponseEntity.ok().body(user);
+   }
+
+    // PUT REST endpoint for updating the userData
+    @CrossOrigin
+	 @RequestMapping(value="/users", method = RequestMethod.PUT)
+    public ResponseEntity<User> modifyUserRest(@RequestBody User user){
+        Long userId = user.getUserId();
+        if (userRepository.existsById(userId)) {
+            User modifiedUser = userRepository.save(user);
+            return ResponseEntity.ok().body(modifiedUser);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+
+    }
+
+    @CrossOrigin
+     @PostMapping("/checkLoginRequest")
+    public ResponseEntity<User> checkLoginRequest(@RequestBody User user) {
+        User appuser = userRepository.findByUsername(user.getUsername());
+        if (appuser != null) {
+            if (user.getPasswordHash().equals(appuser.getPasswordHash()) ) {
+                return ResponseEntity.ok(appuser);
+            } else {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+            }
+        } else { 
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         }
     }
 
