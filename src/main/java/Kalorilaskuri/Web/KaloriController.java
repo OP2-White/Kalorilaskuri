@@ -163,10 +163,10 @@ public class KaloriController {
     @CrossOrigin
      @PostMapping("/checkLoginRequest")
     public ResponseEntity<AppUser> checkLoginRequest(@RequestBody AppUser user) {
-        logger.info("User.getUsername()=> ", user.getUsername());
+        logger.info("User.getUsername()=> ", user);
         AppUser appuser = AppUserRepository.findByUsername(user.getUsername());
-        logger.info("user.getPasswordHash()=> ", user.getPasswordHash());
-        logger.info("appuser.getPasswordHash()=> ", appuser.getPasswordHash());
+        // logger.info("user.getPasswordHash()=> ", user.getPasswordHash());
+        // logger.info("appuser.getPasswordHash()=> ", appuser.getPasswordHash());
         if (appuser != null) {
             if (user.getPasswordHash().equals(appuser.getPasswordHash()) ) {
                 return ResponseEntity.ok(appuser);
