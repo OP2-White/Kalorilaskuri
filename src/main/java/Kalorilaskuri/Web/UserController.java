@@ -28,7 +28,7 @@ public class UserController {
             return "redirect:/";
         }
 
-        User user = new User(signup.getUsername(), signup.getPassword(), signup.getRole());
+        User user = new User(signup.getUsername(), signup.getPassword());
         userRepository.save(user);
         return "redirect:/login";
     }

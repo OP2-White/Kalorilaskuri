@@ -19,17 +19,15 @@ public class User {
     @Column(name = "password", nullable = false)
     private String passwordHash;
 
-    @Column(name = "role", nullable = false)
-    private String role;
 
     public User() {
     }
 
-    public User( String username, String passwordHash, String role) {
+    public User( String username, String passwordHash) {
         super();
         this.username = username;
         this.passwordHash = passwordHash;
-        this.role = role;
+    
     }
 
     public Long getId() {
@@ -56,18 +54,10 @@ public class User {
         this.passwordHash = passwordHash;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
 
     @Override
     public String toString() {
-        return "AppUser [id=" + id + ", username=" + username + ", passwordHash=" + passwordHash + ", role=" + role
-                + "]";
+        return "AppUser [id=" + id + ", username=" + username + ", passwordHash=" + passwordHash +  "]";
     }
 
     
