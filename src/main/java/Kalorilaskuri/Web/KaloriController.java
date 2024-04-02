@@ -5,7 +5,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +15,6 @@ import Kalorilaskuri.Domain.FoodRepository;
 import Kalorilaskuri.Domain.FoodEatenRepository;
 import Kalorilaskuri.Domain.Food;
 import Kalorilaskuri.Domain.FoodEaten;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -30,8 +28,8 @@ public class KaloriController {
     @Autowired
     private FoodEatenRepository foodEatenRepository;
 
-
-    @GetMapping("/")
+@CrossOrigin
+@RequestMapping(value = "/", method = RequestMethod.GET)
     public String home() {
         return "foodListRest"; 
     }
@@ -53,6 +51,10 @@ public class KaloriController {
     @RequestMapping(value="findByName/{foodName}", method = RequestMethod.GET)
     public @ResponseBody Optional<Food> foodByNameRest(@PathVariable("foodName") String foodName) {
         return foodRepository.findByFoodName(foodName);
+
+    @RequestMapping(value="/foodREST/{id}", method = RequestMethod.GET)
+    public @ResponseBody Optional<Food> foodByIdRest(@PathVariable Long id) {
+        return foodRepository.findById(id);
     }
 
     @CrossOrigin
@@ -97,6 +99,10 @@ public class KaloriController {
     @RequestMapping(value = "/eatenFoodListREST", method = RequestMethod.GET)
     public @ResponseBody List <FoodEaten> foodListEatenFoodsRest() {
         return(List<FoodEaten>) foodEatenRepository.findAll();
+
+    @RequestMapping(value="/saveFoodEatenREST", method = RequestMethod.POST)
+    public @ResponseBody FoodEaten saveFoodEatenRest(@RequestBody FoodEaten foodEaten) {
+        return foodEatenRepository.save(foodEaten);
     }
 
 
