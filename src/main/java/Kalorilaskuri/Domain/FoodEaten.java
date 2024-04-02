@@ -29,13 +29,14 @@ public class FoodEaten {
 
    
 
-public FoodEaten(String date, String foodName, int calories, int protein, int carbs, int fat) {
+public FoodEaten(String date, String foodName, int calories, int protein, int carbs, int fat, int sugar) {
     this.date = date;
     this.foodName = foodName;
     this.calories = calories;
     this.protein = protein;
     this.carbs = carbs;
     this.fat = fat;
+    this.sugar = sugar;
 }
 
 
