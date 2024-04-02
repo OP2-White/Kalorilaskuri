@@ -100,5 +100,25 @@ public class KaloriController {
     }
 
 
+    //DELETE TOIMINNALLISUUS
+    @CrossOrigin
+    @RequestMapping(value = "/deleteFoodREST/{foodId}", method = RequestMethod.DELETE)
+    public ResponseEntity<String> deleteFoodRest(@PathVariable("foodId") Long foodId) {
+        try {
+            // Tässä voit käyttää foodRepositoryn deleteById-metodia poistaaksesi ruoan
+            foodRepository.deleteById(foodId);
+            
+            // Palauta onnistunut vastaus
+            return ResponseEntity.ok("Food deleted successfully");
+        } catch (Exception e) {
+            // Lokita poikkeus virheenkorjaustarkoituksiin
+            e.printStackTrace();
+
+            // Palauta virheellinen vastaus tarkalla virhesanomalla
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error deleting food: " + e.getMessage());
+        }
+    }
+
     }
 
