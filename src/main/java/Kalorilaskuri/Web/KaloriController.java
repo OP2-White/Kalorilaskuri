@@ -76,8 +76,21 @@ public class KaloriController {
 
     @CrossOrigin
     @RequestMapping(value="saveFoodEatenREST", method = RequestMethod.POST)
-    public @ResponseBody FoodEaten saveFoodEatenRest(@RequestBody FoodEaten foodEaten) {
-        return foodEatenRepository.save(foodEaten);
+    public ResponseEntity<String> saveFoodEatenRest(@RequestBody FoodEaten foodEaten) {
+        try {
+            // Save the food data to the database
+            foodEatenRepository.save(foodEaten);
+            
+            // Return success response
+            return ResponseEntity.ok("Data saved successfully");
+        } catch (Exception e) {
+            // Log the exception for debugging purposes
+            e.printStackTrace();
+
+            // Return an error response with the exact error message
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error saving data: " + e.getMessage());
+        }
     }
 
     @CrossOrigin
