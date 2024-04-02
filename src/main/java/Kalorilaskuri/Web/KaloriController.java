@@ -32,7 +32,7 @@ public class KaloriController {
     private FoodEatenRepository foodEatenRepository;
 
     @Autowired
-    private AppUserRepository userRepository;
+    private AppUserRepository AppUserRepository;
 @CrossOrigin
 @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home() {
@@ -127,7 +127,7 @@ public class KaloriController {
    public AppUser AddUsersRest(@RequestBody AppUser user){
     AppUser newUser = new AppUser(user.getUsername(), user.getPasswordHash());
 
-       userRepository.save(newUser);
+    AppUserRepository.save(newUser);
        return newUser;
    }
 
@@ -135,7 +135,7 @@ public class KaloriController {
 	@CrossOrigin
     @RequestMapping(value="/users/{id}", method = RequestMethod.GET)
    public ResponseEntity<Optional<AppUser>> findusersRest(@PathVariable("id")Long userId){
-       Optional<AppUser> user = userRepository.findById(userId);
+       Optional<AppUser> user = AppUserRepository.findById(userId);
        return ResponseEntity.ok().body(user);
    }
 
@@ -144,8 +144,8 @@ public class KaloriController {
 	 @RequestMapping(value="/users", method = RequestMethod.PUT)
     public ResponseEntity<AppUser> modifyUserRest(@RequestBody AppUser user){
         Long userId = user.getUserId();
-        if (userRepository.existsById(userId)) {
-            AppUser modifiedUser = userRepository.save(user);
+        if (AppUserRepository.existsById(userId)) {
+            AppUser modifiedUser = AppUserRepository.save(user);
             return ResponseEntity.ok().body(modifiedUser);
         } else {
             return ResponseEntity.notFound().build();
@@ -156,7 +156,7 @@ public class KaloriController {
     @CrossOrigin
      @PostMapping("/checkLoginRequest")
     public ResponseEntity<AppUser> checkLoginRequest(@RequestBody AppUser user) {
-        AppUser appuser = userRepository.findByUsername(user.getUsername());
+        AppUser appuser = AppUserRepository.findByUsername(user.getUsername());
         if (appuser != null) {
             if (user.getPasswordHash().equals(appuser.getPasswordHash()) ) {
                 return ResponseEntity.ok(appuser);

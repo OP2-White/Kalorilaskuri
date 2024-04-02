@@ -10,13 +10,8 @@ import jakarta.persistence.Id;
 public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id", nullable = false, updatable = false)
     private Long userId;
-
-   @Column(name = "username", nullable = false, unique = true)
     private String username;
-    
-    @Column(name = "password", nullable = false)
     private String passwordHash;
 
 
