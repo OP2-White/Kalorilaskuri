@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import Kalorilaskuri.Domain.FoodRepository;
-import Kalorilaskuri.Domain.UserRepository;
+import Kalorilaskuri.Domain.AppUserRepository;
 import Kalorilaskuri.Domain.FoodEatenRepository;
 import Kalorilaskuri.Domain.Food;
 import Kalorilaskuri.Domain.FoodEaten;
-import Kalorilaskuri.Domain.User;
+import Kalorilaskuri.Domain.AppUser;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,7 +32,7 @@ public class KaloriController {
     private FoodEatenRepository foodEatenRepository;
 
     @Autowired
-    private UserRepository userRepository;
+    private AppUserRepository userRepository;
 @CrossOrigin
 @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home() {
@@ -121,11 +121,11 @@ public class KaloriController {
                     .body("Error deleting food: " + e.getMessage());
         }
     }
-
+    //endpoint for making a new user
     @CrossOrigin
     @RequestMapping(value="/users", method = RequestMethod.POST)
-   public User AddUsersRest(@RequestBody User user){
-       User newUser = new User(user.getUsername(), user.getPasswordHash());
+   public AppUser AddUsersRest(@RequestBody AppUser user){
+    AppUser newUser = new AppUser(user.getUsername(), user.getPasswordHash());
 
        userRepository.save(newUser);
        return newUser;
@@ -134,18 +134,18 @@ public class KaloriController {
    // GET REST endpoint for calling users by id as json.
 	@CrossOrigin
     @RequestMapping(value="/users/{id}", method = RequestMethod.GET)
-   public ResponseEntity<Optional<User>> findusersRest(@PathVariable("id")Long userId){
-       Optional<User> user = userRepository.findById(userId);
+   public ResponseEntity<Optional<AppUser>> findusersRest(@PathVariable("id")Long userId){
+       Optional<AppUser> user = userRepository.findById(userId);
        return ResponseEntity.ok().body(user);
    }
 
     // PUT REST endpoint for updating the userData
     @CrossOrigin
 	 @RequestMapping(value="/users", method = RequestMethod.PUT)
-    public ResponseEntity<User> modifyUserRest(@RequestBody User user){
+    public ResponseEntity<AppUser> modifyUserRest(@RequestBody AppUser user){
         Long userId = user.getUserId();
         if (userRepository.existsById(userId)) {
-            User modifiedUser = userRepository.save(user);
+            AppUser modifiedUser = userRepository.save(user);
             return ResponseEntity.ok().body(modifiedUser);
         } else {
             return ResponseEntity.notFound().build();
@@ -155,8 +155,8 @@ public class KaloriController {
 
     @CrossOrigin
      @PostMapping("/checkLoginRequest")
-    public ResponseEntity<User> checkLoginRequest(@RequestBody User user) {
-        User appuser = userRepository.findByUsername(user.getUsername());
+    public ResponseEntity<AppUser> checkLoginRequest(@RequestBody AppUser user) {
+        AppUser appuser = userRepository.findByUsername(user.getUsername());
         if (appuser != null) {
             if (user.getPasswordHash().equals(appuser.getPasswordHash()) ) {
                 return ResponseEntity.ok(appuser);
