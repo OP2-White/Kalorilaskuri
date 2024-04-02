@@ -22,7 +22,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-
 public class KaloriController {
     
     @Autowired
@@ -33,11 +32,11 @@ public class KaloriController {
 
     @Autowired
     private AppUserRepository AppUserRepository;
-@CrossOrigin
-@RequestMapping(value = "/", method = RequestMethod.GET)
-    public String home() {
-        return "foodListRest"; 
-    }
+// @CrossOrigin
+// @RequestMapping(value = "/", method = RequestMethod.GET)
+//     public String home() {
+//         return "foodListRest"; 
+//     }
 
     @CrossOrigin
     @RequestMapping(value = "/foodListREST", method = RequestMethod.GET)
