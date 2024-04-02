@@ -7,7 +7,7 @@ public class UserDatabase {
 
     public UserDatabase() {
         try {
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/JDBC_DATABASE_URL", "Admin", "Admin123");
+            connection = DriverManager.getConnection("jdbc:postgresql://https://calorie-calculator-backend-c99d1a21f171.herokuapp.com/JDBC_DATABASE_URL", "Admin", "Admin123");
             Statement statement = connection.createStatement();
             statement.execute("CREATE TABLE IF NOT EXISTS users (username TEXT PRIMARY KEY, password TEXT)");
         }
