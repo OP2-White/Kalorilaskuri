@@ -22,8 +22,15 @@ import Kalorilaskuri.Domain.AppUser;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
+
 @RestController
 public class KaloriController {
+
+    Logger logger = LoggerFactory.getLogger(KaloriController.class);
     
     @Autowired
     private FoodRepository foodRepository;
@@ -156,7 +163,10 @@ public class KaloriController {
     @CrossOrigin
      @PostMapping("/checkLoginRequest")
     public ResponseEntity<AppUser> checkLoginRequest(@RequestBody AppUser user) {
+        logger.info("User.getUsername()=> ", user.getUsername());
         AppUser appuser = AppUserRepository.findByUsername(user.getUsername());
+        logger.info("user.getPasswordHash()=> ", user.getPasswordHash());
+        logger.info("appuser.getPasswordHash()=> ", appuser.getPasswordHash());
         if (appuser != null) {
             if (user.getPasswordHash().equals(appuser.getPasswordHash()) ) {
                 return ResponseEntity.ok(appuser);
