@@ -25,7 +25,7 @@ public class UserController {
     @PostMapping("/signup")
     public String signupSubmit(Signup signup) {
         if (!signup.getPassword().equals(signup.getPasswordCheck())) {
-            return "redirect:/signup?error";
+            return "redirect:/";
         }
 
         User user = new User(signup.getUsername(), signup.getPassword(), signup.getRole());
