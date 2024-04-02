@@ -51,10 +51,6 @@ public class KaloriController {
     @RequestMapping(value="findByName/{foodName}", method = RequestMethod.GET)
     public @ResponseBody Optional<Food> foodByNameRest(@PathVariable("foodName") String foodName) {
         return foodRepository.findByFoodName(foodName);
-
-    @RequestMapping(value="/foodREST/{id}", method = RequestMethod.GET)
-    public @ResponseBody Optional<Food> foodByIdRest(@PathVariable Long id) {
-        return foodRepository.findById(id);
     }
 
     @CrossOrigin
@@ -99,12 +95,7 @@ public class KaloriController {
     @RequestMapping(value = "/eatenFoodListREST", method = RequestMethod.GET)
     public @ResponseBody List <FoodEaten> foodListEatenFoodsRest() {
         return(List<FoodEaten>) foodEatenRepository.findAll();
-
-    @RequestMapping(value="/saveFoodEatenREST", method = RequestMethod.POST)
-    public @ResponseBody FoodEaten saveFoodEatenRest(@RequestBody FoodEaten foodEaten) {
-        return foodEatenRepository.save(foodEaten);
     }
-
 
     //DELETE TOIMINNALLISUUS
     @CrossOrigin
