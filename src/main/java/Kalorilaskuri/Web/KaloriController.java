@@ -90,14 +90,25 @@ public class KaloriController {
 
     @CrossOrigin
     @RequestMapping(value="saveFoodEatenREST", method = RequestMethod.POST)
-    public ResponseEntity<String> saveFoodEatenRest(@RequestBody FoodEaten eaten) {
-        FoodEaten foodEaten = new FoodEaten(eaten.getDate(), eaten.getFoodName(), eaten.getCalories(), eaten.getProtein(), eaten.getCarbs(), eaten.getFat(),eaten.getSugar(), eaten.getAppUser());
+    public ResponseEntity<String> saveFoodEatenRest(@RequestBody FoodEaten foodEaten) {
         try {
-            // Save the food data to the database
-            foodEatenRepository.save(foodEaten);
+            // Search for the AppUser in the database based on the userId
+            Optional<AppUser> optionalAppUser = AppUserRepository.findById(foodEaten.getAppUser().getUserId());
             
-            // Return success response
-            return ResponseEntity.ok("Data saved successfully");
+            if (optionalAppUser.isPresent()) {
+                // If the AppUser is found, set it as the associated user for FoodEaten
+                foodEaten.setAppUser(optionalAppUser.get());
+                
+                // Save the food data to the database
+                foodEatenRepository.save(foodEaten);
+                
+                // Return success response
+                return ResponseEntity.ok("Data saved successfully");
+            } else {
+                // If the AppUser with the given userId is not found, return an error response
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body("AppUser with ID " + foodEaten.getAppUser().getUserId() + " not found");
+            }
         } catch (Exception e) {
             // Log the exception for debugging purposes
             e.printStackTrace();
@@ -107,6 +118,7 @@ public class KaloriController {
                     .body("Error saving data: " + e.getMessage());
         }
     }
+
 
     @CrossOrigin
     @RequestMapping(value = "/eatenFoodListREST", method = RequestMethod.GET)
