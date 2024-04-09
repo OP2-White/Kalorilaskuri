@@ -95,9 +95,9 @@ public class KaloriController {
                     .body("Error saving data: " + e.getMessage());
         }
     }
-
+    //ei toimi. ei tunnista appuseria. 
     @CrossOrigin
-    @RequestMapping(value="saveFoodEatenREST", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @RequestMapping(value = "saveFoodEatenREST", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<String> saveFoodEatenRest(
         @RequestPart("date") String date,
         @RequestPart("foodName") String foodName,
@@ -108,31 +108,37 @@ public class KaloriController {
         @RequestPart("sugar") int sugar,
         @RequestPart("appUser") String appUserJson
     ) {
-        AppUser appUser = new AppUser();
-        try { 
-             appUser = objectMapper.readValue(appUserJson, AppUser.class);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace(); 
-        }
-        FoodEaten foodEaten = new FoodEaten();
-        foodEaten.setDate(date);
-        foodEaten.setFoodName(foodName);
-        foodEaten.setCalories(calories);
-        foodEaten.setProtein(protein);
-        foodEaten.setCarbs(carbs);
-        foodEaten.setFat(fat);
-        foodEaten.setSugar(sugar);
-        foodEaten.setAppUser(appUser);
         try {
+            // Parse the AppUser object from the JSON string
+            AppUser appUser = objectMapper.readValue(appUserJson, AppUser.class);
+    
+            // Create a new FoodEaten instance
+            FoodEaten foodEaten = new FoodEaten();
+            foodEaten.setDate(date);
+            foodEaten.setFoodName(foodName);
+            foodEaten.setCalories(calories);
+            foodEaten.setProtein(protein);
+            foodEaten.setCarbs(carbs);
+            foodEaten.setFat(fat);
+            foodEaten.setSugar(sugar);
+            foodEaten.setAppUser(appUser);
+    
             // Save the food data to the database
             foodEatenRepository.save(foodEaten);
-            
+    
             // Return success response
             return ResponseEntity.ok("Data saved successfully");
+        } catch (JsonProcessingException e) {
+            // Log the exception for debugging purposes
+            e.printStackTrace();
+    
+            // Return an error response with the exact error message
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error parsing AppUser JSON: " + e.getMessage());
         } catch (Exception e) {
             // Log the exception for debugging purposes
             e.printStackTrace();
-
+    
             // Return an error response with the exact error message
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Error saving data: " + e.getMessage());
