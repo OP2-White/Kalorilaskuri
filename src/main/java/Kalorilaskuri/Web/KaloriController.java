@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,7 +23,11 @@ import Kalorilaskuri.Domain.FoodEaten;
 import Kalorilaskuri.Domain.AppUser;
 import java.util.List;
 import java.util.Optional;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
+
+import org.springframework.http.MediaType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,6 +35,9 @@ import org.slf4j.LoggerFactory;
 
 @RestController
 public class KaloriController {
+
+    @Autowired
+    public ObjectMapper objectMapper;
 
     Logger logger = LoggerFactory.getLogger(KaloriController.class);
     
@@ -89,8 +97,32 @@ public class KaloriController {
     }
 
     @CrossOrigin
-    @RequestMapping(value="saveFoodEatenREST", method = RequestMethod.POST)
-    public ResponseEntity<String> saveFoodEatenRest(@RequestBody FoodEaten foodEaten) {
+    @RequestMapping(value="saveFoodEatenREST", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<String> saveFoodEatenRest(
+        @RequestPart("date") String date,
+        @RequestPart("foodName") String foodName,
+        @RequestPart("calories") int calories,
+        @RequestPart("protein") int protein,
+        @RequestPart("carbs") int carbs,
+        @RequestPart("fat") int fat,
+        @RequestPart("sugar") int sugar,
+        @RequestPart("appUser") String appUserJson
+    ) {
+        AppUser appUser = new AppUser();
+        try { 
+             appUser = objectMapper.readValue(appUserJson, AppUser.class);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace(); 
+        }
+        FoodEaten foodEaten = new FoodEaten();
+        foodEaten.setDate(date);
+        foodEaten.setFoodName(foodName);
+        foodEaten.setCalories(calories);
+        foodEaten.setProtein(protein);
+        foodEaten.setCarbs(carbs);
+        foodEaten.setFat(fat);
+        foodEaten.setSugar(sugar);
+        foodEaten.setAppUser(appUser);
         try {
             // Save the food data to the database
             foodEatenRepository.save(foodEaten);
