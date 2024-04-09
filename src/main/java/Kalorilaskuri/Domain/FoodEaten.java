@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class FoodEaten {
@@ -18,13 +20,17 @@ public class FoodEaten {
    private int fat;
    private int sugar;
 
+   @ManyToOne
+   @JoinColumn(name = "userId")
+   private AppUser appUser;
+
    public FoodEaten() {
 
    }
 
    
 
-public FoodEaten(String date, String foodName, int calories, int protein, int carbs, int fat, int sugar) {
+public FoodEaten(String date, String foodName, int calories, int protein, int carbs, int fat, int sugar, AppUser appUser) {
     this.date = date;
     this.foodName = foodName;
     this.calories = calories;
@@ -32,6 +38,7 @@ public FoodEaten(String date, String foodName, int calories, int protein, int ca
     this.carbs = carbs;
     this.fat = fat;
     this.sugar = sugar;
+    this.appUser = appUser;
 }
 
 
@@ -103,6 +110,14 @@ public int getSugar() {
 
 public void setSugar(int sugar) {
     this.sugar = sugar;
+}
+
+public AppUser getAppUser() {
+    return appUser;
+}
+
+public void setAppUser(AppUser appUser) {
+    this.appUser = appUser;
 }
 
 

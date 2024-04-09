@@ -184,5 +184,14 @@ public class KaloriController {
     }
 
 
+    //GET REST endpoint for fetching users listings with userid as json.
+	@CrossOrigin
+    @RequestMapping(value="/foodEaten/users/{id}", method = RequestMethod.GET)
+   public @ResponseBody List <FoodEaten> findUserFoodEatenRest(@PathVariable("id")Long userId){
+       List<FoodEaten> foodsEaten = foodEatenRepository.findByAppUserUserId(userId);
+       System.out.print(foodsEaten);
+       return foodsEaten;
+   }
+
     }
 
