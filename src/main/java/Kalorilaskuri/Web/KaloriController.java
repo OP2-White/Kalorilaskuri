@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -97,44 +98,34 @@ public class KaloriController {
     }
     //ei toimi. ei tunnista appuseria. 
     @CrossOrigin
-    @RequestMapping(value = "saveFoodEatenREST", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @RequestMapping(value = "/saveFoodEatenREST", method = RequestMethod.POST)
     public ResponseEntity<String> saveFoodEatenRest(
-        @RequestPart("date") String date,
-        @RequestPart("foodName") String foodName,
-        @RequestPart("calories") int calories,
-        @RequestPart("protein") int protein,
-        @RequestPart("carbs") int carbs,
-        @RequestPart("fat") int fat,
-        @RequestPart("sugar") int sugar,
-        @RequestPart("appUser") String appUserJson
+            @RequestParam("date") String date,
+            @RequestParam("foodName") String foodName,
+            @RequestParam("calories") int calories,
+            @RequestParam("protein") int protein,
+            @RequestParam("carbs") int carbs,
+            @RequestParam("fat") int fat,
+            @RequestParam("sugar") int sugar,
+            @RequestParam("userId") Long userId,
+            @RequestParam("username") String username,
+            @RequestParam("passwordHash") String passwordHash
     ) {
         try {
-            // Parse the AppUser object from the JSON string
-            AppUser appUser = objectMapper.readValue(appUserJson, AppUser.class);
+            // Create a new AppUser object
+            AppUser appUser = new AppUser();
+            appUser.setUserId(userId);
+            appUser.setUsername(username);
+            appUser.setPasswordHash(passwordHash);
     
             // Create a new FoodEaten instance
-            FoodEaten foodEaten = new FoodEaten();
-            foodEaten.setDate(date);
-            foodEaten.setFoodName(foodName);
-            foodEaten.setCalories(calories);
-            foodEaten.setProtein(protein);
-            foodEaten.setCarbs(carbs);
-            foodEaten.setFat(fat);
-            foodEaten.setSugar(sugar);
-            foodEaten.setAppUser(appUser);
+            FoodEaten foodEaten = new FoodEaten(date, foodName, calories, protein, carbs, fat, sugar, appUser);
     
             // Save the food data to the database
             foodEatenRepository.save(foodEaten);
     
             // Return success response
             return ResponseEntity.ok("Data saved successfully");
-        } catch (JsonProcessingException e) {
-            // Log the exception for debugging purposes
-            e.printStackTrace();
-    
-            // Return an error response with the exact error message
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Error parsing AppUser JSON: " + e.getMessage());
         } catch (Exception e) {
             // Log the exception for debugging purposes
             e.printStackTrace();
