@@ -97,7 +97,7 @@ public class KaloriController {
     }
 
     @CrossOrigin
-    @RequestMapping(value="saveFoodEatenREST", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @RequestMapping(value="saveFoodEatenREST", method = RequestMethod.POST)
     public ResponseEntity<String> saveFoodEatenRest(
         @RequestPart("date") String date,
         @RequestPart("foodName") String foodName,
