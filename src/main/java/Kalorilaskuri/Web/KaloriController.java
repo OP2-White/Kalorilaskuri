@@ -3,6 +3,7 @@ package Kalorilaskuri.Web;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,6 +41,9 @@ public class KaloriController {
 
     @Autowired
     private AppUserRepository AppUserRepository;
+
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 // @CrossOrigin
 // @RequestMapping(value = "/", method = RequestMethod.GET)
 //     public String home() {
@@ -131,11 +135,13 @@ public class KaloriController {
     //endpoint for making a new user
     @CrossOrigin
     @RequestMapping(value="/users", method = RequestMethod.POST)
-   public AppUser AddUsersRest(@RequestBody AppUser user){
-    AppUser newUser = new AppUser(user.getUsername(), user.getPasswordHash());
+    public ResponseEntity<AppUser> AddUsersRest(@RequestBody AppUser user){
+        // Hash the password before saving
+        String hashedPassword = passwordEncoder.encode(user.getPasswordHash());
+        user.setPasswordHash(hashedPassword);
 
-    AppUserRepository.save(newUser);
-       return newUser;
+        AppUser newUser = AppUserRepository.save(user);
+        return ResponseEntity.ok(newUser);
    }
 
    // GET REST endpoint for calling users by id as json.
@@ -161,14 +167,13 @@ public class KaloriController {
     }
 
     @CrossOrigin
-     @PostMapping("/checkLoginRequest")
+    @PostMapping("/checkLoginRequest")
     public ResponseEntity<AppUser> checkLoginRequest(@RequestBody AppUser user) {
-        logger.info("User.getUsername()=> ", user);
         AppUser appuser = AppUserRepository.findByUsername(user.getUsername());
-        // logger.info("user.getPasswordHash()=> ", user.getPasswordHash());
-        // logger.info("appuser.getPasswordHash()=> ", appuser.getPasswordHash());
+        
         if (appuser != null) {
-            if (user.getPasswordHash().equals(appuser.getPasswordHash()) ) {
+            // Hash the provided password before comparing
+            if (passwordEncoder.matches(user.getPasswordHash(), appuser.getPasswordHash())) {
                 return ResponseEntity.ok(appuser);
             } else {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
@@ -177,6 +182,7 @@ public class KaloriController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         }
     }
+
 
     }
 
