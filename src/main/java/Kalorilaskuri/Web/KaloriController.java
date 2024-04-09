@@ -90,7 +90,8 @@ public class KaloriController {
 
     @CrossOrigin
     @RequestMapping(value="saveFoodEatenREST", method = RequestMethod.POST)
-    public ResponseEntity<String> saveFoodEatenRest(@RequestBody FoodEaten foodEaten) {
+    public ResponseEntity<String> saveFoodEatenRest(@RequestBody FoodEaten eaten) {
+        FoodEaten foodEaten = new FoodEaten(eaten.getDate(), eaten.getFoodName(), eaten.getCalories(), eaten.getProtein(), eaten.getCarbs(), eaten.getFat(),eaten.getSugar(), eaten.getAppUser());
         try {
             // Save the food data to the database
             foodEatenRepository.save(foodEaten);
