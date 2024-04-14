@@ -116,7 +116,9 @@ public class KaloriController {
             AppUser appUser = new AppUser();
             appUser.setUserId(userId);
             appUser.setUsername(username);
-            appUser.setPasswordHash(passwordHash);
+            String hashedPassword = passwordEncoder.encode(passwordHash);
+            appUser.setPasswordHash(hashedPassword);
+    
     
             // Create a new FoodEaten instance
             FoodEaten foodEaten = new FoodEaten(date, foodName, calories, protein, carbs, fat, sugar, appUser);
