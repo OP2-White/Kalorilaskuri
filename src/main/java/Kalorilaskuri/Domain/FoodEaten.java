@@ -22,7 +22,7 @@ public class FoodEaten {
 
    @ManyToOne
    @JoinColumn(name = "userId")
-   private AppUser appUser;
+   public AppUser appUser;
 
    public FoodEaten() {
 

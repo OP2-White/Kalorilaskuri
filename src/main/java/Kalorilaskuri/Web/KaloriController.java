@@ -99,29 +99,26 @@ public class KaloriController {
     //ei toimi. ei tunnista appuseria. 
     @CrossOrigin
     @RequestMapping(value = "/saveFoodEatenREST", method = RequestMethod.POST)
-    public ResponseEntity<String> saveFoodEatenRest(
-            @RequestParam("date") String date,
-            @RequestParam("foodName") String foodName,
-            @RequestParam("calories") int calories,
-            @RequestParam("protein") int protein,
-            @RequestParam("carbs") int carbs,
-            @RequestParam("fat") int fat,
-            @RequestParam("sugar") int sugar,
-            @RequestParam("userId") Long userId,
-            @RequestParam("username") String username,
-            @RequestParam("passwordHash") String passwordHash
-    ) {
+    public ResponseEntity<String> saveFoodEatenRest(@RequestBody FoodEaten requestBody) {
         try {
             // Create a new AppUser object
             AppUser appUser = new AppUser();
-            appUser.setUserId(userId);
-            appUser.setUsername(username);
-            String hashedPassword = passwordEncoder.encode(passwordHash);
-            appUser.setPasswordHash(hashedPassword);
-    
+            appUser.setUserId(requestBody.appUser.getUserId());
+            appUser.setUsername(requestBody.appUser.getUsername());
+           
+            appUser.setPasswordHash(requestBody.appUser.getPasswordHash());
     
             // Create a new FoodEaten instance
-            FoodEaten foodEaten = new FoodEaten(date, foodName, calories, protein, carbs, fat, sugar, appUser);
+            FoodEaten foodEaten = new FoodEaten(
+                requestBody.getDate(),
+                requestBody.getFoodName(),
+                requestBody.getCalories(),
+                requestBody.getProtein(),
+                requestBody.getCarbs(),
+                requestBody.getFat(),
+                requestBody.getSugar(),
+                appUser
+            );
     
             // Save the food data to the database
             foodEatenRepository.save(foodEaten);
@@ -134,9 +131,10 @@ public class KaloriController {
     
             // Return an error response with the exact error message
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Error saving data: " + e.getMessage());
+                .body("Error saving data: " + e.getMessage());
         }
     }
+    
 
     @CrossOrigin
     @RequestMapping(value = "/eatenFoodListREST", method = RequestMethod.GET)
