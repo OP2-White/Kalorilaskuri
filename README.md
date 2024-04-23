@@ -101,7 +101,7 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 * [![Laravel][Laravel.com]][Laravel-url]
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
 * [![JQuery][JQuery.com]][JQuery-url]
-* [![Spring][Spring.io]][JQuery-url]
+* [![Spring][Spring.io]][Spring-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
