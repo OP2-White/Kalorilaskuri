@@ -65,17 +65,6 @@
 
 
 
-
-
-
-### Built With
-
-* [![Spring][Spring.io]][Spring-url]
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
 <!-- GETTING STARTED -->
 ## About Calorietracker
 
