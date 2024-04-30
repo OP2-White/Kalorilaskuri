@@ -21,7 +21,6 @@
 <h3 align="center">Calorietracker</h3>
 
   <p align="center">
-    project_description
     <br />
     <a href="https://github.com/OP2-White/Kalorilaskuri"><strong>Explore the docs »</strong></a>
     <br />
