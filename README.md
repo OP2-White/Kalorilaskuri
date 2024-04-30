@@ -14,7 +14,8 @@
 <br />
 <div align="center">
   <a href="https://github.com/OP2-White/Kalorilaskuri">
-    src="
+    ![trapstarlogo](https://github.com/OP2-White/Kalorilaskuri/assets/144123171/6af5f61f-b8c7-42a4-b4df-6d15f15f5535)
+
   </a>
 
 <h3 align="center">Calorietracker</h3>
