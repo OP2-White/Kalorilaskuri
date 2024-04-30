@@ -13,8 +13,9 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/github_username/repo_name">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+  <a href="https://github.com/OP2-White/Kalorilaskuri">
+    <img src="![trapstarlogo](https://github.com/OP2-White/Kalorilaskuri/assets/144123171/64ccaca1-9f69-4e39-8daa-a9548a8e096a)
+" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">Calorietracker</h3>
