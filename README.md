@@ -14,7 +14,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/OP2-White/Kalorilaskuri">
-  <img src="images/trapstar.png" alt="Logo" width="80" height="80">
+  <img src="images/trapstar.png" alt="Logo" width="1000" height="1000">
 
   </a>
 
