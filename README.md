@@ -169,10 +169,7 @@ Project Link: [https://github.com/OP2-White](https://github.com/OP2-White)
 
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
-
-* []()
-* []()
-* []()
+We would like to sincerely thank our teachers for their support and excellent advice during this project. 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
