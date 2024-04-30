@@ -106,6 +106,7 @@ This is an example of how to list things you need to use the software and how to
 3. Clone the repo
    ```sh
    git clone https://github.com/OP2-White/Kalorilaskuri.git
+   git clone https://github.com/OP2-White/Frontend.git
    ```
 4. Install NPM packages (only for frontend)
    ```sh
