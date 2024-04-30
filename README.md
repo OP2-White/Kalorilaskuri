@@ -101,12 +101,12 @@ This is an example of how to list things you need to use the software and how to
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
+1. Get a free API Key at [https://calorieninjas.com/](https://calorieninjas.com/)
 2. Clone the repo
    ```sh
-   git clone https://github.com/github_username/repo_name.git
+   git clone https://github.com/OP2-White/Kalorilaskuri.git
    ```
-3. Install NPM packages
+3. Install NPM packages (only for frontend)
    ```sh
    npm install
    ```
@@ -166,7 +166,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 * [Aapo Rissanen](https://github.com/Rizzanen)
 * [Miikka Savolainen](https://github.com/MiikkaSa)
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
+Project Link: [https://github.com/OP2-White](https://github.com/OP2-White)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
