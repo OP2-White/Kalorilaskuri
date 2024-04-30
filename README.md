@@ -102,15 +102,16 @@ This is an example of how to list things you need to use the software and how to
 ### Installation
 
 1. Get a free API Key at [https://calorieninjas.com/](https://calorieninjas.com/)
-2. Clone the repo
+2. Get a free API Key at [https://rapidapi.com/malaaddincelik/api/fitness-calculator](https://rapidapi.com/malaaddincelik/api/fitness-calculator)
+3. Clone the repo
    ```sh
    git clone https://github.com/OP2-White/Kalorilaskuri.git
    ```
-3. Install NPM packages (only for frontend)
+4. Install NPM packages (only for frontend)
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
+5. Enter your API in `config.js`
    ```js
    const API_KEY = 'ENTER YOUR API';
    ```
