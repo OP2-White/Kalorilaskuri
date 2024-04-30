@@ -101,8 +101,8 @@ This is an example of how to list things you need to use the software and how to
 
 ### Installation
 
-1. Get a free API Key at [https://calorieninjas.com/](https://calorieninjas.com/)
-2. Get a free API Key at [https://rapidapi.com/malaaddincelik/api/fitness-calculator](https://rapidapi.com/malaaddincelik/api/fitness-calculator)
+1. Get a second free API Key at [https://rapidapi.com/malaaddincelik/api/fitness-calculator](https://rapidapi.com/malaaddincelik/api/fitness-calculator)
+2. Get a free API Key at [https://calorieninjas.com/](https://calorieninjas.com/)
 3. Clone the repo
    ```sh
    git clone https://github.com/OP2-White/Kalorilaskuri.git
@@ -112,10 +112,15 @@ This is an example of how to list things you need to use the software and how to
    ```sh
    npm install
    ```
-5. Enter your API in `config.js`
+5. Enter your first API in `CalculateYourConsumption.jsx`
    ```js
-   const API_KEY = 'ENTER YOUR API';
+   headers x_api_key = 'ENTER YOUR API';
    ```
+   Enter your second API in `TotalCalories.jsx`
+   ```js
+   headers X-RapidAPI-Key = 'ENTER YOUR API';
+   ```
+   
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
