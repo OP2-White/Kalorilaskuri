@@ -25,7 +25,7 @@
     <a href="https://github.com/OP2-White/Kalorilaskuri"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/github_username/repo_name">View Demo</a>
+    <a href="https://op2-white.github.io/Frontend/">View Demo</a>
     ·
     <a href="https://github.com/OP2-White/Kalorilaskuri/issues/new">Report Bug</a>
       </p>
