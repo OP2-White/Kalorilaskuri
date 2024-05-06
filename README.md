@@ -115,10 +115,10 @@ This is an example of how to list things you need to use the software and how to
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-<kbd> <img src="images/Screenshot 2024-05-06 at 14.40.59.png" width="250" > </kbd>
-<kbd> <img src="images/Screenshot 2024-05-06 at 14.41.10.png" width="250" > </kbd>
-<kbd> <img src="images/Screenshot 2024-05-06 at 14.42.07.png" width="250" > </kbd>
-<kbd> <img src="images/Screenshot 2024-05-06 at 14.42.44.png" width="250" > </kbd>
+<kbd> <img src="images/Screenshot 2024-05-06 at 14.40.59.png" width="500" > </kbd>
+<kbd> <img src="images/Screenshot 2024-05-06 at 14.41.10.png" width="500" > </kbd>
+<kbd> <img src="images/Screenshot 2024-05-06 at 14.42.07.png" width="500" > </kbd>
+<kbd> <img src="images/Screenshot 2024-05-06 at 14.42.44.png" width="500" > </kbd>
 <kbd> <img src="images/Screenshot 2024-05-06 at 14.43.12.png" width="500" > </kbd>
 
 
