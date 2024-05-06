@@ -65,6 +65,10 @@
 
 Calorietracker is a comprehensive application designed to help users manage and track their daily calorie intake efficiently. This tool is perfect for anyone looking to gain insights into their eating habits, plan meals, or achieve their dietary goals through detailed calorie and nutritional information.
 
+**Technology Stack
+* Front-End: React.js
+* Back-End: Spring Boot, utilizing the Spring Web MVC framework for RESTful APIs.
+* Database: PostgreSQL hosted on Heroku
 The application is split into two main components:
 - **Front-end**: A user-friendly interface built with React.js that allows users to interact with the application smoothly.
 - **Back-end**: A robust server-side component using Node.js and Express, designed to handle data management, API integration, and server logic.
