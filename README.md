@@ -28,9 +28,7 @@
     <a href="https://github.com/github_username/repo_name">View Demo</a>
     ·
     <a href="https://github.com/OP2-White/Kalorilaskuri/issues/new">Report Bug</a>
-    ·
-    <a href="https://github.com/github_username/repo_name/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
-  </p>
+      </p>
 </div>
 
 
