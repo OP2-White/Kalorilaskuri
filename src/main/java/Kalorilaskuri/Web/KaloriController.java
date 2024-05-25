@@ -201,7 +201,6 @@ public class KaloriController {
         AppUser appuser = AppUserRepository.findByUsername(user.getUsername());
         
         if (appuser != null) {
-            // Hash the provided password before comparing
             if (passwordEncoder.matches(user.getPasswordHash(), appuser.getPasswordHash())) {
                 return ResponseEntity.ok(appuser);
             } else {
